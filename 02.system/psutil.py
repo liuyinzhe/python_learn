@@ -1,3 +1,5 @@
+## 代码来自古明地觉的编程教室，只是记录，详细介绍请查看来源
+
 import psutil
 print(psutil.cpu_count())  # 12
 
@@ -50,3 +52,52 @@ print(psutil.cpu_freq())
 scpufreq(current=2208.0, min=0.0, max=2208.0)
 """
 
+# 查看内存使用情况
+import psutil
+
+print(psutil.virtual_memory())
+"""
+svmem(total=17029259264, 
+      available=7698505728, 
+      percent=54.8, 
+      used=9330753536, 
+      free=7698505728)
+"""
+
+# 查看交换内存信息
+print(psutil.swap_memory())
+"""
+sswap(total=3087007744, 
+      used=4509839360, 
+      free=-1422831616, 
+      percent=146.1, 
+      sin=0, 
+      sout=0)
+"""
+
+# 查看磁盘分区、磁盘使用率和磁盘 IO 信息
+print(psutil.disk_partitions())
+"""
+[sdiskpart(device='C:\\', mountpoint='C:\\', fstype='NTFS', opts='rw,fixed', maxfile=255, maxpath=260),
+ sdiskpart(device='D:\\', mountpoint='D:\\', fstype='NTFS', opts='rw,fixed', maxfile=255, maxpath=260),
+ sdiskpart(device='E:\\', mountpoint='E:\\', fstype='NTFS', opts='rw,fixed', maxfile=255, maxpath=260)]
+"""
+
+# 查看某个磁盘使用情况print(psutil.disk_usage("C:\\"))
+"""
+sdiskusage(total=267117391872, 
+           used=96894304256, 
+           free=170223087616, 
+           percent=36.3)
+"""
+
+# 查看磁盘 IO 统计信息
+print(psutil.disk_io_counters())
+"""
+sdiskio(read_count=1172461, 
+        write_count=2153031, 
+        read_bytes=36854982144, 
+        write_bytes=52718300160, 
+        read_time=551, 
+        write_time=1437)
+"""
