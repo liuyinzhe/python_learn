@@ -1,0 +1,23 @@
+import numpy as np
+from ctypes import cdll, c_double, c_uint, POINTER
+ 
+# 加载 SO 动态连结文件
+mydll = cdll.LoadLibrary('./my_so2.so')
+ 
+# 设置 SO 文件中 sort 函数的参数数据型态
+# POINTER 指针
+# c_uint -> unsigned int
+mydll.sort.argtypes = [POINTER(c_double), c_uint]
+ 
+# 设置 SO 文件中 sort 函数的传回值数据型态
+mydll.sort.restype = None
+ 
+# 建立 NumPy 数据阵列
+data = np.array([3.2, 5.6, 1.2, 9.4, 7.3])
+ 
+# 取得阵列的指标
+dataPtr = data.ctypes.data_as(POINTER(c_double))
+ 
+# 呼叫 SO 文件中的 sort 函数
+mydll.sort(dataPtr, data.size)
+print(data)
